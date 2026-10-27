@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Liquidgets</string>
+    <string name="widget_clock_desc">Liquid Glass clock</string>
+    <string name="widget_calendar_desc">Liquid Glass date</string>
+    <string name="widget_weather_desc">Liquid Glass weather</string>
+    <string name="widget_battery_desc">Liquid Glass battery</string>
+    <string name="widget_music_desc">Liquid Glass music controls</string>
+    <string name="wallpaper_name">Liquidgets real glass</string>
+    <string name="wallpaper_desc">Draws real Liquid Glass behind your Liquidgets widgets</string>
+    <string name="media_access">Liquidgets music widget</string>
+    <string name="previous">Previous</string>
+    <string name="play_pause">Play or pause</string>
+    <string name="next">Next</string>
+</resources>
