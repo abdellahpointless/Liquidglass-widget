@@ -6,6 +6,9 @@ on:
   pull_request:
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -21,3 +24,14 @@ jobs:
         with:
           name: liquidgets-debug
           path: app/build/outputs/apk/debug/*.apk
+      # A fixed "test-build" pre-release so the newest APK always has one direct download link for the phone.
+      - name: Publish test build
+        if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository
+        env:
+          GH_TOKEN: ${{ github.token }}
+          SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: |
+          cp app/build/outputs/apk/debug/app-debug.apk Liquidgets-debug.apk
+          gh release delete test-build --yes --cleanup-tag || true
+          gh release create test-build Liquidgets-debug.apk --prerelease --target "$SHA" \
+            --title "Liquidgets test build" --notes "Latest debug build from ${SHA}. Install over the previous one."
